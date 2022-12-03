@@ -1,24 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import QuotesList from "./pages/QuotesList";
+import SoloQuote from "./pages/SoloQuote";
+import HomePage from "./pages/HomePage";
+import { useState, useEffect } from "react";
+import getData from "./functions/getData";
+import getAge from "./functions/getAge";
 
 function App() {
+  const [quotes, setQuotes] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    const callApi = async () => {
+      try {
+        const res = await getData();
+        if (!res.ok) {
+          throw new Error(`HTTP error status: ${res.status}`);
+        }
+        const data = await res.json();
+
+        const ages = await getAge(
+          data.quotes.map((quote) => quote.author).slice(0, 10)
+        );
+
+        const combinedData = data.quotes
+          .slice(0, 10)
+          .map((quoteObj, index) => ({ ...quoteObj, age: ages[index].age }));
+
+        setError(null);
+        setQuotes(combinedData);
+      } catch (err) {
+        setError(err);
+        setQuotes(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    callApi();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <nav className="shadow-accent">
+        <p>Quotes Generator</p>{" "}
+        <div>
+          <p>Made with: </p>
+          <a href="https://favqs.com/api">FavQs API</a>
+        </div>
+      </nav>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="quotes"
+          element={
+            <QuotesList quotes={quotes} loading={loading} error={error} />
+          }
+        />
+        <Route path="random-quote" element={<SoloQuote />} />
+      </Routes>
+    </>
   );
 }
 

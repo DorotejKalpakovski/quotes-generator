@@ -1,13 +1,183 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  background-color: hsl(218, 23%, 16%);
+  font-family: 'Roboto', sans-serif;
+  color: white;
+}
+
+.shadow-accent {
+  box-shadow: 0 0 3px hsl(0, 0%, 10%);
+}
+
+.center-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+nav {
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: hsl(217, 19%, 24%);
+}
+
+nav > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+nav > div > a {
+  color: hsl(150, 100%, 66%);
+}
+
+.quotes-list-container {
+  border: 2px solid hsl(217, 19%, 38%);
+  border-radius: 5px;
+  background-color: hsl(217, 19%, 24%);
+  max-width: 80%;
+  margin: 0 auto 20px auto;
+}
+
+.quotes-list-container > .quote-container + .quote-container {
+  border-top: 2px solid hsl(217, 19%, 38%);
+}
+
+.quote-container {
+  justify-content: center;
+  width: 100%;
+  font-size: 18px;
+}
+
+.quote-container > div + div {
+  border-left: 2px solid hsl(217, 19%, 38%);;
+}
+
+.quote-id {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote-body {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 70%;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.quote-author {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.quote-emoji {
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.focused-quote-container {
+  background-color: hsl(217, 19%, 24%);
+  max-width: 100%;
+  border: 2px solid hsl(217, 19%, 38%);
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 32px;
+}
+
+.focused-quote-container > hr {
+  color: rgba(360, 360, 360, .4);
+}
+
+.focused-quote-container > div {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.button {
+  border: none;
+  border-radius: 2px;
+  font: inherit;
+  font-size: 18px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  padding: .5em 2em;
+  background-color: hsl(150, 90%, 66%);
+  box-shadow: 0 0 5px hsl(0, 0%, 10%);
+}
+
+.button:active {
+  box-shadow: 0 0 10px hsl(150, 100%, 66%);
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 20px;
+}
+
+.error-container {
+  background-color: hsl(217, 19%, 24%);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.welcome-container {
+  background-color: hsl(217, 19%, 24%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+  gap: 30px;
+  border-radius: 10px;
+  border: 2px solid hsl(217, 19%, 38%);
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  border: 8px solid;
+  border-color: white transparent white transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+}
+
+@keyframes spin-anim {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
 }
