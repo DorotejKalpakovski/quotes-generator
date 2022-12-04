@@ -12,7 +12,7 @@ const QuotesList = ({ quotes, loading, error }) => {
         </Link>
       </div>
       {loading && <Loader />}
-      {error && <ErrorComponent message={error.message} />}
+      {!loading && error && <ErrorComponent message={error.message} />}
       {quotes && (
         <div className="quotes-list-container">
           {quotes.map((quote) => (

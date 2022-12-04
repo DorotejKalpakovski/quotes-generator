@@ -1,5 +1,5 @@
 import FocusedQuote from "../components/FocusedQuote";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import getData from "../functions/getData";
 import Loader from "../components/Loader";
@@ -14,7 +14,7 @@ const SoloQuote = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const getNewQuote = async () => {
+  const getNewQuote = useCallback(async () => {
     setLoading(true);
     try {
       const res = await getData();
@@ -30,11 +30,11 @@ const SoloQuote = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     getNewQuote();
-  }, []);
+  }, [getNewQuote]);
 
   return (
     <div>
@@ -47,7 +47,7 @@ const SoloQuote = () => {
         </button>
       </div>
       {loading && <Loader />}
-      {error && <h1>{`HTTP error code: ${error}`}</h1>}
+      {!loading && error && <h1>{`HTTP error code: ${error}`}</h1>}
       {!loading && quotes && <FocusedQuote quoteObj={randomQuote(quotes)} />}
     </div>
   );

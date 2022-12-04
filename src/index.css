@@ -24,7 +24,7 @@ body {
 
 nav {
   display: flex;
-  font-size: 20px;
+  font-size: 16px;
   justify-content: space-between;
   padding: 20px;
   background-color: hsl(217, 19%, 24%);
@@ -44,7 +44,7 @@ nav > div > a {
   border: 2px solid hsl(217, 19%, 38%);
   border-radius: 5px;
   background-color: hsl(217, 19%, 24%);
-  max-width: 80%;
+  max-width: 92%;
   margin: 0 auto 20px auto;
 }
 
@@ -55,7 +55,7 @@ nav > div > a {
 .quote-container {
   justify-content: center;
   width: 100%;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .quote-container > div + div {
@@ -63,7 +63,7 @@ nav > div > a {
 }
 
 .quote-id {
-  width: 10%;
+  width: 15%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,7 +73,7 @@ nav > div > a {
   display: flex;
   justify-content: center;
   text-align: center;
-  width: 70%;
+  width: 65%;
   align-items: center;
   padding: 0 20px;
 }
@@ -95,7 +95,7 @@ nav > div > a {
 
 .focused-quote-container {
   background-color: hsl(217, 19%, 24%);
-  max-width: 100%;
+  /* max-width: 80%; */
   border: 2px solid hsl(217, 19%, 38%);
   border-radius: 10px;
   padding: 20px;
@@ -116,7 +116,6 @@ nav > div > a {
   display: flex;
   justify-content: space-between;
   padding: 30px;
-  max-width: 80%;
   margin: 0 auto;
 }
 
@@ -179,5 +178,31 @@ nav > div > a {
   }
   100% {
       transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 1300px) {
+  nav {
+    font-size: 20px;
+  }
+
+  .quotes-list {
+    max-width: 80%;
+  }
+
+  .quote-container {
+    font-size: 18px;
+  }
+
+  .buttons-container {
+    max-width: 80%;
+  }
+
+}
+
+@media (max-width: 1300px) {
+  .focused-quote-container {
+    width: 80%;
+    font-size: 20px;
   }
 }

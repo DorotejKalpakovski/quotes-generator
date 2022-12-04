@@ -1,8 +1,8 @@
-import WelcomeComponent from "../components/WelcomeComponent";
+import { Navigate } from "react-router-dom";
 const HomePage = () => {
   return (
     <div>
-      <WelcomeComponent />
+      <Navigate to="/quotes" />
     </div>
   );
 };
