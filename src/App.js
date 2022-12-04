@@ -18,11 +18,10 @@ function App() {
           throw new Error(`HTTP error status: ${res.status}`);
         }
         const data = await res.json();
-
         const ages = await getAge(
+          // Agify.io returns a maximum of 10 ages per request
           data.quotes.map((quote) => quote.author).slice(0, 10)
         );
-
         const combinedData = data.quotes
           .slice(0, 10)
           .map((quoteObj, index) => ({ ...quoteObj, age: ages[index].age }));

@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import getData from "../functions/getData";
 import Loader from "../components/Loader";
+import ErrorComponent from "../components/ErrorComponent";
 
 const randomQuote = (quotes) => {
   const randomNumber = Math.floor(Math.random() * 25);
@@ -47,7 +48,7 @@ const SoloQuote = () => {
         </button>
       </div>
       {loading && <Loader />}
-      {!loading && error && <h1>{`HTTP error code: ${error}`}</h1>}
+      {!loading && error && <ErrorComponent message={error.message} />}
       {!loading && quotes && <FocusedQuote quoteObj={randomQuote(quotes)} />}
     </div>
   );
